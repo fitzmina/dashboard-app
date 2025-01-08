@@ -1,6 +1,33 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import { CssBaseline } from "@mui/material";
+import { SessionProvider, useSession } from "next-auth/react";
+import * as React from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import SideBar from "@/components/sidebar";
+import Layout from "@/components/layout";
+import Login from "@/components/login";
+import Footer from "@/components/footer";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const theme = createTheme({
+  colorSchemes: {
+    dark: true,
+  },
+});
+
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
+  // const { data: session } = useSession();
+
+  return (
+    <ThemeProvider theme={theme}>
+      <SessionProvider session={session}>
+        <CssBaseline />
+        <SideBar />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SessionProvider>
+    </ThemeProvider>
+  );
 }
