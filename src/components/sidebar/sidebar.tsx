@@ -167,7 +167,7 @@ export default function SideBar() {
   };
 
   const menuRouteList = ["dashboard", "analytics", "profile"];
-  const menuRouteList2 = ["settings", ""];
+  const menuRouteList2 = ["settings", "/"];
 
   const menuListTranslations = ["Dashboard", "Analytics", "Profile"];
   const menuListTranslations2 = ["Settings", "Sign Out"];
@@ -296,7 +296,11 @@ export default function SideBar() {
             <Box>
               <List>
                 {menuListTranslations.map((text, index) => (
-                  <ListItem key={text} disablePadding sx={{ display: "block" }}>
+                  <ListItem
+                    key={`${text}+${index}`}
+                    disablePadding
+                    sx={{ display: "block" }}
+                  >
                     <NextLink
                       className={scss.link}
                       href={`/dashboard/${menuRouteList[index]}`}
