@@ -40,7 +40,7 @@ const Profile = () => {
   };
   return (
     <>
-      <h2>{session ? session?.user?.name : "User"}'s Profile</h2>
+      <h2>{session ? session?.user?.name : "User"} Profile</h2>
       <Box>
         <Paper sx={{ padding: "1rem 2rem" }}>
           <Grid2 container justifyContent="center">
