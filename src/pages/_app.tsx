@@ -16,7 +16,7 @@ const theme = createTheme({
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
-}) {
+}: any) {
   // const { data: session } = useSession();
 
   return (

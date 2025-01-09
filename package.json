@@ -26,7 +26,8 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "sass": "^1.83.1",
-    "typescript": "5.7.2"
+    "typescript": "5.7.2",
+    "uuid": "^11.0.4"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "3.2.3",

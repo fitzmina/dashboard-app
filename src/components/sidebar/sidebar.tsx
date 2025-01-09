@@ -34,6 +34,7 @@ import Login from "../login";
 import Dashboard from "@/pages/dashboard";
 import MyApp from "../theme";
 import Link from "next/link";
+import { v4 as uuidv4 } from "uuid";
 
 const drawerWidth = 240;
 
@@ -166,11 +167,26 @@ export default function SideBar() {
     setOpen(false);
   };
 
+  type User = {
+    userId: string;
+    name: string;
+  };
+
   const menuRouteList = ["dashboard", "analytics", "profile"];
   const menuRouteList2 = ["settings", "/"];
 
   const menuListTranslations = ["Dashboard", "Analytics", "Profile"];
   const menuListTranslations2 = ["Settings", "Sign Out"];
+
+  const menuRouteListUuid: User[] = menuListTranslations.map((name) => ({
+    userId: uuidv4(),
+    name,
+  }));
+  const menuRouteListUuid2: User[] = menuListTranslations2.map((name) => ({
+    userId: uuidv4(),
+    name,
+  }));
+
   const menuListIcons = [<HomeIcon />, <EqualizerIcon />, <Person2Icon />];
   const menuListIcons2 = [<Settings />, <ExitToAppIcon />];
 
@@ -295,9 +311,9 @@ export default function SideBar() {
           >
             <Box>
               <List>
-                {menuListTranslations.map((text, index) => (
+                {menuRouteListUuid.map((text, index) => (
                   <ListItem
-                    key={`${text}+${index}`}
+                    key={text.userId}
                     disablePadding
                     sx={{ display: "block" }}
                   >
@@ -306,9 +322,9 @@ export default function SideBar() {
                       href={`/dashboard/${menuRouteList[index]}`}
                     >
                       <ListItemButton
-                        onClick={() => handleListItemButtonClick(text)}
-                        title={text}
-                        aria-label={text}
+                        onClick={() => handleListItemButtonClick(text.name)}
+                        title={text.name}
+                        aria-label={text.name}
                         sx={{
                           minHeight: 48,
                           justifyContent: open ? "initial" : "center",
@@ -325,7 +341,7 @@ export default function SideBar() {
                           {menuListIcons[index]}
                         </ListItemIcon>
                         <ListItemText
-                          primary={text}
+                          primary={text.name}
                           sx={{
                             color: theme.palette.text.primary,
                             opacity: open ? 1 : 0,
@@ -340,9 +356,9 @@ export default function SideBar() {
             <Box>
               <Divider />
               <List>
-                {menuListTranslations2.map((text, index) => (
+                {menuRouteListUuid2.map((text, index) => (
                   <ListItem
-                    key={`${text}+${index}`}
+                    key={text.userId}
                     disablePadding
                     sx={{ display: "block" }}
                   >
@@ -351,9 +367,9 @@ export default function SideBar() {
                       href={`/dashboard/${menuRouteList2[index]}`}
                     >
                       <ListItemButton
-                        onClick={() => handleListItemButtonClick(text)}
-                        title={text}
-                        aria-label={text}
+                        onClick={() => handleListItemButtonClick(text.name)}
+                        title={text.name}
+                        aria-label={text.name}
                         sx={{
                           minHeight: 48,
                           justifyContent: open ? "initial" : "center",
@@ -370,7 +386,7 @@ export default function SideBar() {
                           {menuListIcons2[index]}
                         </ListItemIcon>
                         <ListItemText
-                          primary={text}
+                          primary={text.name}
                           sx={{
                             color: theme.palette.text.primary,
                             opacity: open ? 1 : 0,
