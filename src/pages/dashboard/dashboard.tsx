@@ -1,6 +1,6 @@
 import { Box, Grid2, Paper } from "@mui/material";
 import React from "react";
-import scss from "./Dashboard.module.scss";
+import scss from "./dashboard.module.scss";
 
 export default function Dashboard() {
   return (
